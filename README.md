@@ -6,9 +6,9 @@ Une petite équipe d'agents [Claude Code](https://claude.com/claude-code) pour a
 
 ```mermaid
 flowchart TD
-    D["👤 Dirigeant du club"] --> C
+    D["👤 Thomas Ferreira<br/>éducateur sportif & coordinateur<br/>Judo Club de Longueau"] --> C
     C["🧭 Chef d'équipe<br/><i>Claude Opus 5.5</i><br/>organise, délègue, synthétise"]
-    C --> J["⚖️ Juriste<br/><i>Claude Fable 5.1</i><br/>CCNS (IDCC 2511) & droit social"]
+    C --> J["⚖️ Juriste<br/><i>Claude Opus 5.5</i><br/>CCNS (IDCC 2511) & droit social"]
     C --> A["🗂️ Assistant personnel<br/><i>Claude Sonnet 5.5</i><br/>courriers, plannings, administratif"]
 ```
 
@@ -17,10 +17,10 @@ flowchart TD
 | Agent | Modèle | Pourquoi |
 |---|---|---|
 | **Chef** | Claude Opus 5.5 (`opus`) | Excellent pour comprendre une demande, la découper et piloter d'autres agents, à un coût raisonnable. |
-| **Juriste** | Claude Fable 5.1 (`fable`) | Le modèle le plus capable : le droit social ne tolère pas l'approximation (une erreur sur un contrat ou un salaire coûte cher). Le volume de questions d'un club reste faible, donc le surcoût est limité. |
+| **Juriste** | Claude Opus 5.5 (`opus`) | Raisonnement juridique rigoureux et vérification des sources, pour un coût bien inférieur à Fable. Pour un dossier très lourd, on peut passer ponctuellement sur `fable`. |
 | **Assistant** | Claude Sonnet 5.5 (`sonnet`) | Rapide, très bon rédacteur, économique pour des tâches fréquentes et variées. |
 
-> Pour réduire les coûts, le juriste peut passer sur `opus` (changer `model:` dans `.claude/agents/juriste.md`). Pour des tâches très répétitives, l'assistant peut passer sur `haiku`.
+> Le modèle se change dans l'en-tête `model:` de chaque fichier de `.claude/agents/`. Pour des tâches très répétitives, l'assistant peut passer sur `haiku`.
 
 ## Utilisation
 
@@ -29,13 +29,15 @@ claude --agent chef
 ```
 
 Puis demandez simplement, par exemple :
-- « Je veux embaucher un professeur 10 h/semaine en CDI intermittent, qu'est-ce que je dois faire ? »
-- « Prépare la convocation à l'AG du 15 novembre. »
-- « Un bénévole demande à être défrayé, est-ce possible et comment ? »
+- « Prépare la convocation à la prochaine réunion de bureau. »
+- « Quelles sont les règles de la modulation du temps de travail dans la CCNS ? »
+- « Prépare une trame de DUERP pour le club. »
 
-Le chef consulte le juriste et/ou l'assistant puis vous rend une synthèse ; les documents produits sont rangés dans `dossiers/`.
+Le chef consulte le juriste et/ou l'assistant puis vous rend une synthèse ; les documents produits sont rangés dans `dossiers/` (ou `prive/` pour ce qui est personnel).
 
-**Première étape :** remplissez `club/fiche-club.md` — tous les agents s'en servent.
+> 🔒 **Confidentialité :** ce dépôt est public. Tout ce qui concerne la situation personnelle (contrat, paie, santé, litige) va dans `prive/`, exclu de git par `.gitignore`.
+
+**Contexte :** `club/fiche-club.md` décrit le club — tous les agents s'en servent.
 
 ## Structure
 
